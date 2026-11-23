@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
+mkdir -p bin
+
+gcc -Iinclude src/worker.c -o bin/worker || exit 1
+
+gcc -Iinclude src/main.c src/process_manager.c -o bin/os_manager || exit 1
+
+./bin/os_manager
